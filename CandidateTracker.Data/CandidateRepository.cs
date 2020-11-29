@@ -21,27 +21,7 @@ namespace CandidateTracker.Data
                 return context.Candidates.ToList();
             }
         }
-        public List<Candidate> GetPendingCandidates()
-        {
-            using(var context = new CandidateContext(_connectionString))
-            {
-                return context.Candidates.Where(x => x.Pending == true).ToList();
-            }
-        }
-        public List<Candidate> GetConfirmedCandidates()
-        {
-            using(var context = new CandidateContext(_connectionString))
-            {
-                return context.Candidates.Where(x => x.Confirmed == true).ToList();
-            }
-        }
-        public List<Candidate> GetRefusedCandidates()
-        {
-            using (var context = new CandidateContext(_connectionString))
-            {
-                return context.Candidates.Where(x => x.Refused == true).ToList();
-            }
-        }
+
         public void Add(Candidate c)
         {
             using (var context = new CandidateContext(_connectionString))
@@ -66,30 +46,7 @@ namespace CandidateTracker.Data
                    new SqlParameter("@id", id));
             }
         }
-        public int GetPendingCount()
-        {
-            using (var context = new CandidateContext(_connectionString))
-            {
-                return context.Candidates.Count(c => c.Pending == true);
-                   
-            }
-        }
-        public int GetRefusedCount()
-        {
-            using (var context = new CandidateContext(_connectionString))
-            {
-                return context.Candidates.Count(c => c.Refused == true);
 
-            }
-        }
-        public int GetConfirmCount()
-        {
-            using (var context = new CandidateContext(_connectionString))
-            {
-                return context.Candidates.Count(c => c.Confirmed == true);
-
-            }
-        }
         public Candidate GetCandidate(int id)
         {
             using (var context = new CandidateContext(_connectionString))
